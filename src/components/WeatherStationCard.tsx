@@ -10,11 +10,11 @@ const StyledWeatherStationCard = styled.div`
   box-sizing: border-box;
 `;
 
-const StyledWeatherStationCardContents = styled.div`
+const StyledWeatherStationCardContents = styled.div<{ hovered: boolean }>`
   padding: 8px;
   display: flex;
   flex-direction: column;
-  background-color: #5e5e5c;
+  background-color: ${({ hovered }) => (hovered ? "green" : "#5e5e5c")};
   border-radius: 4px;
 `;
 
@@ -40,7 +40,9 @@ interface InterfaceDataListProps {
   name: string;
   id: string;
   longitude: number;
+  hover: () => void;
   select: () => void;
+  hovered: boolean;
 }
 
 const WeatherStationCard: React.FC<InterfaceDataListProps> = ({
@@ -50,17 +52,21 @@ const WeatherStationCard: React.FC<InterfaceDataListProps> = ({
   name,
   id,
   select,
+  hover,
+  hovered,
 }) => {
   return (
-    <StyledWeatherStationCard key={id} onClick={select}>
-      <StyledWeatherStationCardContents>
+    <StyledWeatherStationCard key={id} onClick={select} onMouseEnter={hover}>
+      <StyledWeatherStationCardContents hovered={hovered}>
         <StyledWeatherStationTitle>
           <StyledStationName>{name}</StyledStationName>
           <StyledDataElement>{`Elevation: ${elevation} meters`}</StyledDataElement>
         </StyledWeatherStationTitle>
         <StyledCardLine>
           <StyledDataElement>{`Lat: ${latitude.toFixed(5)}`}</StyledDataElement>
-          <StyledDataElement>{`Lon: ${longitude.toFixed(5)}`}</StyledDataElement>
+          <StyledDataElement>{`Lon: ${longitude.toFixed(
+            5
+          )}`}</StyledDataElement>
         </StyledCardLine>
       </StyledWeatherStationCardContents>
     </StyledWeatherStationCard>

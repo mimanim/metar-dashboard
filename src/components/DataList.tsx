@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 // Contexts
+import HoverContext from "../state/hover/HoverContext";
 import SelectionContext from "../state/selection/SelectionContext";
 import StationsContext from "../state/stations/StationsContext";
 
@@ -46,6 +47,7 @@ export type WeatherStation = {
 };
 
 const DataList: React.FC = () => {
+  const [hoveredObjectId, setHoveredObjectId] = useContext(HoverContext);
   const [selectedObjectId, setSelectedObjectId] = useContext(SelectionContext);
   const { stations } = useContext(StationsContext);
   return (
@@ -65,6 +67,8 @@ const DataList: React.FC = () => {
                 selectedObjectId === station.id ? null : station.id
               )
             }
+            hover={() => setHoveredObjectId(station.id)}
+            hovered={hoveredObjectId === station.id}
           />
         ))}
       </StyledDataListContents>

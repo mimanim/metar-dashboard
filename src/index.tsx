@@ -4,16 +4,19 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+import HoverProvider from "./state/hover/HoverProvider";
 import SelectionProvider from "./state/selection/SelectionProvider";
 import StationsProvider from "./state/stations/StationsProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <SelectionProvider>
-      <StationsProvider>
-        <App />
-      </StationsProvider>
-    </SelectionProvider>
+    <HoverProvider>
+      <SelectionProvider>
+        <StationsProvider>
+          <App />
+        </StationsProvider>
+      </SelectionProvider>
+    </HoverProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
