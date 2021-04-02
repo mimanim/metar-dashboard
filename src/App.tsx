@@ -1,9 +1,10 @@
-import MapContainer from "./components/MapContainer";
-import DataList from "./components/DataList";
+import React from "react";
 import styled from "styled-components";
 
-import SelectionProvider from "./state/selection/SelectionProvider";
-import StationsProvider from "./state/stations/StationsProvider";
+import DataList from "./components/DataList";
+import MapContainer from "./components/MapContainer";
+import WeatherStationDetails from "./components/WeatherStationDetails";
+import SelectionContext from "./state/selection/SelectionContext";
 
 const StyledApp = styled.div`
   height: 100vh;
@@ -23,19 +24,17 @@ const StyledMapWrapper = styled.div`
 `;
 
 function App() {
+  const [selectedObjectId] = React.useContext(SelectionContext);
+
   return (
-    <SelectionProvider>
-      <StationsProvider>
-        <StyledApp className="App">
-          <StyledLayout>
-            <StyledMapWrapper>
-              <MapContainer />
-            </StyledMapWrapper>
-            <DataList />
-          </StyledLayout>
-        </StyledApp>
-      </StationsProvider>
-    </SelectionProvider>
+    <StyledApp className="App">
+      <StyledLayout>
+        <StyledMapWrapper>
+          <MapContainer />
+        </StyledMapWrapper>
+        {selectedObjectId === null ? <DataList /> : <WeatherStationDetails />}
+      </StyledLayout>
+    </StyledApp>
   );
 }
 

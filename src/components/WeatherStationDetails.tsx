@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
+import SelectionContext from "../state/selection/SelectionContext";
+import StationsContext from "../state/stations/StationsContext";
+
+import { WeatherStation } from "../types";
+
 const StyledWeatherStationCard = styled.div`
   width: 100%;
-  flex: 1
+  flex: 1;
 `;
 
 const StyledWeatherStationCardContents = styled.div`
@@ -16,28 +21,24 @@ const StyledStationName = styled.h4``;
 
 const StyledDataElement = styled.span``;
 
-// todo remove this and use the selection context instead 
-interface InterfaceDataListProps {
-  elevation: number;
-  latitude: number;
-  name: string;
-  id: string;
-  longitude: number;
-  mindate: string;
-  maxdate: string;
-  datacoverage: number;
-}
+const WeatherStationDetails: React.FC = () => {
+  const [selectedObjectId] = React.useContext(SelectionContext);
+  const { stations } = React.useContext(StationsContext);
 
-const WeatherStationDetails: React.FC<InterfaceDataListProps> = ({
-  elevation,
-  latitude,
-  longitude,
-  name,
-  id,
-  mindate,
-  maxdate,
-  datacoverage
-}) => {
+  const selectedStation = stations.find(
+    (station) => station.id === selectedObjectId
+  ) as WeatherStation;
+  const {
+    elevation,
+    latitude,
+    longitude,
+    name,
+    id,
+    mindate,
+    maxdate,
+    datacoverage,
+  } = selectedStation;
+
   return (
     <StyledWeatherStationCard key={id}>
       <StyledWeatherStationCardContents>

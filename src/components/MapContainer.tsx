@@ -57,6 +57,7 @@ const MapContainer: React.FC = () => {
       onClick={(pickInfo) => {
         if (!pickInfo.object) {
           setSelectedObjectId(null);
+          return;
         }
         setSelectedObjectId(
           (pickInfo.object as any).properties.id === selectedObjectId
