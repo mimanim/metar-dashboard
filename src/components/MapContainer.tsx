@@ -3,6 +3,7 @@ import DeckGLController from "@deck.gl/react";
 import React from "react";
 import { StaticMap } from "react-map-gl";
 
+import HoverContext from "../state/hover/HoverContext";
 import SelectionContext from "../state/selection/SelectionContext";
 import StationsContext from "../state/stations/StationsContext";
 
@@ -15,6 +16,7 @@ const INITIAL_VIEW_STATE = {
 };
 
 const MapContainer: React.FC = () => {
+  const [hoveredObjectId, setHoveredObjectId] = React.useContext(HoverContext);
   const [selectedObjectId, setSelectedObjectId] = React.useContext(
     SelectionContext
   );
@@ -35,7 +37,9 @@ const MapContainer: React.FC = () => {
     filled: true,
     extruded: false,
     getFillColor: (d) =>
-      selectedObjectId === d.properties.id
+      hoveredObjectId === d.properties.id
+        ? [0, 255, 0, 127.5]
+        : selectedObjectId === d.properties.id
         ? [255, 0, 0, 127.5]
         : [0, 0, 255, 127.5],
     getRadius: 32,
@@ -64,6 +68,13 @@ const MapContainer: React.FC = () => {
             ? null
             : (pickInfo.object as any).properties.id
         );
+      }}
+      onHover={(pickInfo) => {
+        if (!pickInfo.object) {
+          setHoveredObjectId(null);
+          return;
+        }
+        setHoveredObjectId((pickInfo.object as any).properties.id);
       }}
     >
       <StaticMap
