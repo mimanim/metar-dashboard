@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@danmarshall/deckgl-typings": "^4.7.2",
+    "@typescript-eslint/parser": "^4.20.0",
     "eslint": "^7.23.0"
   },
   "browserslist": {

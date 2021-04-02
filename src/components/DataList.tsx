@@ -48,6 +48,7 @@ const renderWeatherStationListElements = (
 ): React.ReactNode[] => {
   return stations.map((station) => (
     <WeatherStationCard
+      key={station.id}
       elevation={station.elevation}
       latitude={station.latitude}
       longitude={station.longitude}
