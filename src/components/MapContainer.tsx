@@ -46,7 +46,7 @@ const MapContainer: React.FC = () => {
         return JSON.stringify((d.object as any).properties);
       }}
       layers={[weatherStationLayer]}
-      width="66.66%"
+      width="calc(100% - 420px)"
     >
       <StaticMap
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}

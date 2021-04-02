@@ -6,18 +6,31 @@ import styled from "styled-components";
 
 const StyledWeatherStationCard = styled.div`
   width: 100%;
-  height: 50px;
-  margin: 0px 4px;
-  border-radius: 4px;
+  margin: 8px 4px;
+  box-sizing: border-box;
 `;
 
 const StyledWeatherStationCardContents = styled.div`
   padding: 8px;
   display: flex;
   flex-direction: column;
+  background-color: #5e5e5c;
+  border-radius: 4px;
 `;
 
-const StyledStationName = styled.h4``;
+const StyledCardLine = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const StyledWeatherStationTitle = styled(StyledCardLine)`
+  padding-bottom: 4px;
+  justify-content: space-between;
+`;
+
+const StyledStationName = styled.h4`
+  margin: 0;
+`;
 
 const StyledDataElement = styled.span``;
 
@@ -39,10 +52,14 @@ const WeatherStationCard: React.FC<InterfaceDataListProps> = ({
   return (
     <StyledWeatherStationCard key={id}>
       <StyledWeatherStationCardContents>
-        <StyledStationName>{name}</StyledStationName>
-        <StyledDataElement>{elevation}</StyledDataElement>
-        <StyledDataElement>{latitude}</StyledDataElement>
-        <StyledDataElement>{longitude}</StyledDataElement>
+        <StyledWeatherStationTitle>
+          <StyledStationName>{name}</StyledStationName>
+          <StyledDataElement>{`Elevation: ${elevation} meters`}</StyledDataElement>
+        </StyledWeatherStationTitle>
+        <StyledCardLine>
+          <StyledDataElement>{`Lat: ${latitude.toFixed(5)}`}</StyledDataElement>
+          <StyledDataElement>{`Lon: ${longitude.toFixed(5)}`}</StyledDataElement>
+        </StyledCardLine>
       </StyledWeatherStationCardContents>
     </StyledWeatherStationCard>
   );

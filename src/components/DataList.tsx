@@ -9,11 +9,11 @@ import WeatherStationCard from "./WeatherStationCard";
 
 const StyledDataList = styled.div`
   height: 100%;
-  width: 30%;
-  flex: 1;
+  width: 420px;
   display: flex;
   flex-direction: column;
   color: #dee3e1;
+  box-sizing: border-box;
 `;
 
 const StyledDataListHeader = styled.div`
@@ -29,6 +29,7 @@ const StyledDataListHeader = styled.div`
 const StyledDataListContents = styled.div`
   flex: 1;
   overflow: scroll;
+  box-sizing: border-box;
 `;
 
 export type WeatherStation = {
