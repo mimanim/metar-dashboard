@@ -1,6 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
-
+import React from "react";
+import styled from "styled-components";
 
 const StyledWeatherStationCard = styled.div`
   width: 100%;
@@ -15,13 +14,9 @@ const StyledWeatherStationCardContents = styled.div`
   flex-direction: column;
 `;
 
-const StyledStationName = styled.h4`
+const StyledStationName = styled.h4``;
 
-`;
-
-const StyledDataElement = styled.span`
-
-`;
+const StyledDataElement = styled.span``;
 
 export type WeatherStation = {
   elevation: number;
@@ -35,7 +30,6 @@ export type WeatherStation = {
   longitude: number;
 };
 
-
 interface InterfaceDataListProps {
   elevation: number;
   latitude: number;
@@ -44,14 +38,17 @@ interface InterfaceDataListProps {
   longitude: number;
 }
 
-
-const DataList: React.FC<InterfaceDataListProps> = ({elevation, latitude, longitude, name, id}) => {
+const DataList: React.FC<InterfaceDataListProps> = ({
+  elevation,
+  latitude,
+  longitude,
+  name,
+  id,
+}) => {
   return (
     <StyledWeatherStationCard key={id}>
       <StyledWeatherStationCardContents>
-        <StyledStationName>
-          {name}
-        </StyledStationName>
+        <StyledStationName>{name}</StyledStationName>
         <StyledDataElement>{elevation}</StyledDataElement>
         <StyledDataElement>{latitude}</StyledDataElement>
         <StyledDataElement>{longitude}</StyledDataElement>

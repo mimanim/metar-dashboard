@@ -1,8 +1,7 @@
-import MapContainer from './components/MapContainer';
-import DataList from './components/DataList';
-import styled from 'styled-components';
+import MapContainer from "./components/MapContainer";
+import DataList from "./components/DataList";
+import styled from "styled-components";
 import StationsProvider from "./state/StationsProvider";
-
 
 const StyledApp = styled.div`
   height: 100vh;
@@ -29,7 +28,7 @@ function App() {
           <StyledMapWrapper>
             <MapContainer />
           </StyledMapWrapper>
-          <DataList stations={[]}/>
+          <DataList />
         </StyledLayout>
       </StyledApp>
     </StationsProvider>

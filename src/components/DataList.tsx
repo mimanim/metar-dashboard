@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
-import styled from 'styled-components';
+import React, { useContext } from "react";
+import styled from "styled-components";
 
 // Contexts
-import StationsContext from '../state/StationsContext'
+import StationsContext from "../state/StationsContext";
 
 // Components
-import WeatherStationCard from './WeatherStationCard';
+import WeatherStationCard from "./WeatherStationCard";
 
 const StyledDataList = styled.div`
   height: 100%;
@@ -31,7 +31,6 @@ const StyledDataListContents = styled.div`
   overflow: scroll;
 `;
 
-
 export type WeatherStation = {
   elevation: number;
   mindate: string;
@@ -44,23 +43,25 @@ export type WeatherStation = {
   longitude: number;
 };
 
-const renderWeatherStationListElements = (stations: WeatherStation[] ): React.ReactNode[] => {
-  return stations.map(station => <WeatherStationCard
-    elevation={station.elevation}
-    latitude={station.latitude}
-    longitude={station.longitude}
-    id={station.id}
-    name={station.name}
-  />)
-}
+const renderWeatherStationListElements = (
+  stations: WeatherStation[]
+): React.ReactNode[] => {
+  return stations.map((station) => (
+    <WeatherStationCard
+      elevation={station.elevation}
+      latitude={station.latitude}
+      longitude={station.longitude}
+      id={station.id}
+      name={station.name}
+    />
+  ));
+};
 
 const DataList: React.FC = () => {
-  const {stations} = useContext(StationsContext);
+  const { stations } = useContext(StationsContext);
   return (
     <StyledDataList>
-      <StyledDataListHeader>
-        Weather Stations
-      </StyledDataListHeader>
+      <StyledDataListHeader>Weather Stations</StyledDataListHeader>
       <StyledDataListContents>
         {renderWeatherStationListElements(stations)}
       </StyledDataListContents>

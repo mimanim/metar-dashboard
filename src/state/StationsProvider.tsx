@@ -1,33 +1,11 @@
 import React from "react";
 
-import apiController from "../api/ApiController";
+import { defaultStations } from "./stationsConfig";
 import StationsContext from "./StationsContext";
 
-import { WeatherStation } from "../types";
-
 const StationsProvider: React.FC = ({ children }) => {
-  const [stations, setStations] = React.useState(new Array<WeatherStation>());
-  const [synchronizing, setSynchronizing] = React.useState(false);
-
-  React.useEffect(() => {
-    let stale = false;
-
-    setSynchronizing(true);
-    apiController
-      .fetchStations()
-      .then((nextStations) => {
-        if (stale) return;
-
-        setStations(nextStations);
-      })
-      .finally(() => {
-        setSynchronizing(false);
-      });
-
-    return () => {
-      stale = true;
-    };
-  }, []);
+  const [stations] = React.useState(defaultStations);
+  const [synchronizing] = React.useState(false);
 
   return (
     <StationsContext.Provider value={{ stations, synchronizing }}>
