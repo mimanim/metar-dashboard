@@ -19,6 +19,10 @@ const StyledStationName = styled.h4`
 
 `;
 
+const StyledDataElement = styled.span`
+
+`;
+
 export type WeatherStation = {
   elevation: number;
   mindate: string;
@@ -48,6 +52,9 @@ const DataList: React.FC<InterfaceDataListProps> = ({elevation, latitude, longit
         <StyledStationName>
           {name}
         </StyledStationName>
+        <StyledDataElement>{elevation}</StyledDataElement>
+        <StyledDataElement>{latitude}</StyledDataElement>
+        <StyledDataElement>{longitude}</StyledDataElement>
       </StyledWeatherStationCardContents>
     </StyledWeatherStationCard>
   );

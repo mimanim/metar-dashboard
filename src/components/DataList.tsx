@@ -44,7 +44,7 @@ export type WeatherStation = {
   longitude: number;
 };
 
-const renderWeatherStationListElements = (stations: WeatherStation[] ): JSX.Element[] => {
+const renderWeatherStationListElements = (stations: WeatherStation[] ): React.ReactNode[] => {
   return stations.map(station => <WeatherStationCard
     elevation={station.elevation}
     latitude={station.latitude}
