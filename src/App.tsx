@@ -1,13 +1,15 @@
-import React from 'react';
-import './App.css';
-import MapContainer from './components/MapContainer';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
+import "./App.css";
+import MapContainer from "./components/MapContainer";
+import StationsProvider from "./state/StationsProvider";
+
+const App: React.FC = () => (
+  <div className="App">
+    <StationsProvider>
       <MapContainer />
-    </div>
-  );
-}
+    </StationsProvider>
+  </div>
+);
 
 export default App;
