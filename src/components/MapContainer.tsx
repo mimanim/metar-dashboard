@@ -16,6 +16,7 @@ const MapContainer: React.FC = () => {
       initialViewState={INITIAL_VIEW_STATE}
       controller
       layers={[]}
+      width='66.66%'
     >
       <StaticMap mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN} />
     </DeckGLController>
