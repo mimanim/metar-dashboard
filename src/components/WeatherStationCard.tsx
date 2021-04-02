@@ -11,6 +11,12 @@ const StyledWeatherStationCard = styled.div`
 
 const StyledWeatherStationCardContents = styled.div`
   padding: 4px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledStationName = styled.h4`
+
 `;
 
 export type WeatherStation = {
@@ -37,9 +43,11 @@ interface InterfaceDataListProps {
 
 const DataList: React.FC<InterfaceDataListProps> = ({elevation, latitude, longitude, name, id}) => {
   return (
-    <StyledWeatherStationCard>
+    <StyledWeatherStationCard key={id}>
       <StyledWeatherStationCardContents>
-        
+        <StyledStationName>
+          {name}
+        </StyledStationName>
       </StyledWeatherStationCardContents>
     </StyledWeatherStationCard>
   );

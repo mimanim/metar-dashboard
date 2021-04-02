@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 
-// components
+// Contexts
+import StationsContext from '../state/StationsContext'
+
+// Components
 import WeatherStationCard from './WeatherStationCard';
 
 const StyledDataList = styled.div`
@@ -41,11 +44,6 @@ export type WeatherStation = {
   longitude: number;
 };
 
-
-interface InterfaceDataListProps {
-  stations: WeatherStation[] 
-}
-
 const renderWeatherStationListElements = (stations: WeatherStation[] ): JSX.Element[] => {
   return stations.map(station => <WeatherStationCard
     elevation={station.elevation}
@@ -56,7 +54,8 @@ const renderWeatherStationListElements = (stations: WeatherStation[] ): JSX.Elem
   />)
 }
 
-const DataList: React.FC<InterfaceDataListProps> = ({stations}) => {
+const DataList: React.FC = () => {
+  const {stations} = useContext(StationsContext);
   return (
     <StyledDataList>
       <StyledDataListHeader>
