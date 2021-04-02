@@ -16,7 +16,7 @@ const StyledStationName = styled.h4``;
 
 const StyledDataElement = styled.span``;
 
-
+// todo remove this and use the selection context instead 
 interface InterfaceDataListProps {
   elevation: number;
   latitude: number;
@@ -34,6 +34,9 @@ const WeatherStationDetails: React.FC<InterfaceDataListProps> = ({
   longitude,
   name,
   id,
+  mindate,
+  maxdate,
+  datacoverage
 }) => {
   return (
     <StyledWeatherStationCard key={id}>
@@ -42,6 +45,9 @@ const WeatherStationDetails: React.FC<InterfaceDataListProps> = ({
         <StyledDataElement>{elevation}</StyledDataElement>
         <StyledDataElement>{latitude}</StyledDataElement>
         <StyledDataElement>{longitude}</StyledDataElement>
+        <StyledDataElement>{mindate}</StyledDataElement>
+        <StyledDataElement>{maxdate}</StyledDataElement>
+        <StyledDataElement>{datacoverage}</StyledDataElement>
       </StyledWeatherStationCardContents>
     </StyledWeatherStationCard>
   );
