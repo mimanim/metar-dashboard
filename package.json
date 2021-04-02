@@ -2,7 +2,17 @@
   "name": "metar-dashboard",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "postinstall": "npm explore @danmarshall/deckgl-typings -- npm run postinstall"
+  },
   "dependencies": {
+    "@deck.gl/core": "^8.4.11",
+    "@deck.gl/layers": "^8.4.11",
+    "@deck.gl/react": "^8.4.11",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -12,15 +22,13 @@
     "@types/react-dom": "^17.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-map-gl": "^6.1.11",
     "react-scripts": "4.0.3",
     "typescript": "^4.2.3",
     "web-vitals": "^1.1.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@danmarshall/deckgl-typings": "^4.7.2"
   },
   "eslintConfig": {
     "extends": [
