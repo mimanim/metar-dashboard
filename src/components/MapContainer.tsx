@@ -8,10 +8,10 @@ import SelectionContext from "../state/selection/SelectionContext";
 import StationsContext from "../state/stations/StationsContext";
 
 const INITIAL_VIEW_STATE = {
-  longitude: -122.41669,
-  latitude: 37.7853,
-  zoom: 13,
-  pitch: 0,
+  longitude: -122.1332,
+  latitude: 37.6821,
+  zoom: 10,
+  pitch: 30,
   bearing: 0,
 };
 

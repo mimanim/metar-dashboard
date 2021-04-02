@@ -22,3 +22,11 @@ export type WeatherStation = {
   elevationUnit: "METERS";
   longitude: number;
 };
+
+export type DailySummary = {
+  date: string;
+  datatype: string;
+  station: string;
+  attributes: string;
+  value: number;
+};

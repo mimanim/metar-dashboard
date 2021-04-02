@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import HoverProvider from "./state/hover/HoverProvider";
+import ReportsProvider from "./state/reports/ReportsProvider";
 import SelectionProvider from "./state/selection/SelectionProvider";
 import StationsProvider from "./state/stations/StationsProvider";
 
@@ -13,7 +14,9 @@ ReactDOM.render(
     <HoverProvider>
       <SelectionProvider>
         <StationsProvider>
-          <App />
+          <ReportsProvider>
+            <App />
+          </ReportsProvider>
         </StationsProvider>
       </SelectionProvider>
     </HoverProvider>

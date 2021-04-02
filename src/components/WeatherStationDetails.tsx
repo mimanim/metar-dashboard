@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+import ReportsContext from "../state/reports/ReportsContext";
 import SelectionContext from "../state/selection/SelectionContext";
 import StationsContext from "../state/stations/StationsContext";
 
-import { WeatherStation } from "../types";
+import { DailySummary, WeatherStation } from "../types";
 
 const StyledWeatherStationCard = styled.div`
   width: 100%;
@@ -27,7 +28,6 @@ const StyledCardLine = styled.div`
 
 const StyledWeatherStationTitle = styled(StyledCardLine)`
   padding: 8px 20px;
-
 `;
 
 const StyledStationName = styled.h4`
@@ -51,8 +51,8 @@ const StyledDataTitleWrapper = styled.div`
   justify-content: center;
 `;
 
-
 const WeatherStationDetails: React.FC = () => {
+  const { loading, reports } = React.useContext(ReportsContext);
   const [selectedObjectId] = React.useContext(SelectionContext);
   const { stations } = React.useContext(StationsContext);
 
@@ -66,8 +66,10 @@ const WeatherStationDetails: React.FC = () => {
     name,
     id,
     mindate,
-    maxdate
+    maxdate,
   } = selectedStation;
+
+  const stationReports = reports.get(id);
 
   return (
     <StyledWeatherStationCard key={id}>
@@ -81,20 +83,35 @@ const WeatherStationDetails: React.FC = () => {
         <StyledCardLine>
           <StyledDataElement>{`Lat: ${latitude.toFixed(5)}`}</StyledDataElement>
           <StyledDataElement>{`Lon: ${longitude.toFixed(
-          5
-        )}`}</StyledDataElement>
+            5
+          )}`}</StyledDataElement>
         </StyledCardLine>
         <StyledCardLine>
-          <StyledDataElement>{`Online: ${mindate ? mindate : '-'}`}</StyledDataElement>
-          <StyledDataElement>{`Offline: ${maxdate ? maxdate : '-'}`}</StyledDataElement>
+          <StyledDataElement>{`Online: ${
+            mindate ? mindate : "-"
+          }`}</StyledDataElement>
+          <StyledDataElement>{`Offline: ${
+            maxdate ? maxdate : "-"
+          }`}</StyledDataElement>
         </StyledCardLine>
         <StyledStationDataContainer>
-          <StyledDataTitleWrapper>
-            <StyledStationName>
-              Station Data
-            </StyledStationName>
-          </StyledDataTitleWrapper>
-
+          {loading ? (
+            <span>Loading...</span>
+          ) : stationReports === undefined ? (
+            <span>No reports.</span>
+          ) : (
+            <StyledDataTitleWrapper>
+              <StyledStationName>
+                <ul>
+                  {(reports.get(id) as DailySummary[]).map((report) => (
+                    <li key={`${report.station}:${report.date}`}>
+                      {JSON.stringify(report)}
+                    </li>
+                  ))}
+                </ul>
+              </StyledStationName>
+            </StyledDataTitleWrapper>
+          )}
         </StyledStationDataContainer>
       </StyledWeatherStationCardContents>
     </StyledWeatherStationCard>
