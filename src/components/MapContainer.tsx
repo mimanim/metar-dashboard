@@ -47,10 +47,24 @@ const MapContainer: React.FC = () => {
     <DeckGLController
       initialViewState={INITIAL_VIEW_STATE}
       controller
-      getTooltip={(d) => {
-        if (!d.object || !(d.object as any).properties) return null;
+      getTooltip={ ({object}) => {
+        console.log(object);
+        return object && {
+        // @ts-ignore: Unreachable code error
+        html: `<span>${object.properties.name}</span><div>Elevation: ${object.properties.elevation} meters</div>`,
+        style: {
+          backgroundColor: '#454543',
+          fontSize: '0.8em',
+          color: 'white',
+          borderRadius: '4px'
+        }
+      }
 
-        return JSON.stringify((d.object as any).properties);
+       
+
+        // if (!d.object || !(d.object as any).properties) return null;
+
+        // return JSON.stringify((d.object as any).properties);
       }}
       layers={[weatherStationLayer]}
       width="calc(100% - 420px)"
