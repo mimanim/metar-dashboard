@@ -51,6 +51,14 @@ const StyledDataTitleWrapper = styled.div`
   justify-content: center;
 `;
 
+const StyledDataList = styled.ul`
+  width: 100%;
+`;
+const StyledDataListElement = styled.li`
+  width: 100%;
+  word-wrap: break-word;
+`;
+
 const WeatherStationDetails: React.FC = () => {
   const { loading, reports } = React.useContext(ReportsContext);
   const [selectedObjectId] = React.useContext(SelectionContext);
@@ -100,17 +108,20 @@ const WeatherStationDetails: React.FC = () => {
           ) : stationReports === undefined ? (
             <span>No reports.</span>
           ) : (
-            <StyledDataTitleWrapper>
-              <StyledStationName>
-                <ul>
-                  {(reports.get(id) as DailySummary[]).map((report) => (
-                    <li key={`${report.station}:${report.date}`}>
-                      {JSON.stringify(report)}
-                    </li>
-                  ))}
-                </ul>
-              </StyledStationName>
-            </StyledDataTitleWrapper>
+            <>
+              <StyledDataTitleWrapper>
+                <StyledStationName>
+                  Station Data
+                </StyledStationName>
+              </StyledDataTitleWrapper>
+              <StyledDataList>
+              {(reports.get(id) as DailySummary[]).map((report) => (
+                <StyledDataListElement key={`${report.station}:${report.date}`}>
+                  {JSON.stringify(report)}
+                </StyledDataListElement>
+              ))}
+              </StyledDataList>
+            </>
           )}
         </StyledStationDataContainer>
       </StyledWeatherStationCardContents>
