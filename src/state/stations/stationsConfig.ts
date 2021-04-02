@@ -1,4 +1,4 @@
-import { WeatherStation } from "../types";
+import { WeatherStation } from "../../types";
 
 export const defaultStations: WeatherStation[] = [
   {

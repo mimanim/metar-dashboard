@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 // Contexts
-import StationsContext from "../state/StationsContext";
+import SelectionContext from "../state/selection/SelectionContext";
+import StationsContext from "../state/stations/StationsContext";
 
 // Components
 import WeatherStationCard from "./WeatherStationCard";
@@ -44,28 +45,28 @@ export type WeatherStation = {
   longitude: number;
 };
 
-const renderWeatherStationListElements = (
-  stations: WeatherStation[]
-): React.ReactNode[] => {
-  return stations.map((station) => (
-    <WeatherStationCard
-      key={station.id}
-      elevation={station.elevation}
-      latitude={station.latitude}
-      longitude={station.longitude}
-      id={station.id}
-      name={station.name}
-    />
-  ));
-};
-
 const DataList: React.FC = () => {
+  const [selectedObjectId, setSelectedObjectId] = useContext(SelectionContext);
   const { stations } = useContext(StationsContext);
   return (
     <StyledDataList>
       <StyledDataListHeader>Weather Stations</StyledDataListHeader>
       <StyledDataListContents>
-        {renderWeatherStationListElements(stations)}
+        {stations.map((station) => (
+          <WeatherStationCard
+            key={station.id}
+            elevation={station.elevation}
+            latitude={station.latitude}
+            longitude={station.longitude}
+            id={station.id}
+            name={station.name}
+            select={() =>
+              setSelectedObjectId(
+                selectedObjectId === station.id ? null : station.id
+              )
+            }
+          />
+        ))}
       </StyledDataListContents>
     </StyledDataList>
   );

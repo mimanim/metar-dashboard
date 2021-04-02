@@ -40,6 +40,7 @@ interface InterfaceDataListProps {
   name: string;
   id: string;
   longitude: number;
+  select: () => void;
 }
 
 const WeatherStationCard: React.FC<InterfaceDataListProps> = ({
@@ -48,9 +49,10 @@ const WeatherStationCard: React.FC<InterfaceDataListProps> = ({
   longitude,
   name,
   id,
+  select,
 }) => {
   return (
-    <StyledWeatherStationCard key={id}>
+    <StyledWeatherStationCard key={id} onClick={select}>
       <StyledWeatherStationCardContents>
         <StyledWeatherStationTitle>
           <StyledStationName>{name}</StyledStationName>
