@@ -1,18 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-
-// Contexts
-// selection context
 
 const StyledWeatherStationCard = styled.div`
   width: 100%;
-  height: 50px;
-  margin: 0px 4px;
-  border-radius: 4px;
+  flex: 1
 `;
 
 const StyledWeatherStationCardContents = styled.div`
-  padding: 8px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
 `;
@@ -21,15 +16,19 @@ const StyledStationName = styled.h4``;
 
 const StyledDataElement = styled.span``;
 
+
 interface InterfaceDataListProps {
   elevation: number;
   latitude: number;
   name: string;
   id: string;
   longitude: number;
+  mindate: string;
+  maxdate: string;
+  datacoverage: number;
 }
 
-const WeatherStationCard: React.FC<InterfaceDataListProps> = ({
+const WeatherStationDetails: React.FC<InterfaceDataListProps> = ({
   elevation,
   latitude,
   longitude,
@@ -48,4 +47,4 @@ const WeatherStationCard: React.FC<InterfaceDataListProps> = ({
   );
 };
 
-export default WeatherStationCard;
+export default WeatherStationDetails;
