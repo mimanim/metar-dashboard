@@ -52,7 +52,9 @@ const DataList: React.FC = () => {
   const { stations } = useContext(StationsContext);
   return (
     <StyledDataList>
-      <StyledDataListHeader>Weather Stations</StyledDataListHeader>
+      <StyledDataListHeader>
+        Weather Stations ({stations.length})
+      </StyledDataListHeader>
       <StyledDataListContents>
         {stations.map((station) => (
           <WeatherStationCard

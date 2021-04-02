@@ -35,16 +35,15 @@ const MapContainer: React.FC = () => {
     pickable: true,
     stroked: false,
     filled: true,
-    extruded: false,
+    extruded: true,
     getFillColor: (d) =>
       hoveredObjectId === d.properties.id
         ? [0, 255, 0, 127.5]
         : selectedObjectId === d.properties.id
         ? [255, 0, 0, 127.5]
         : [0, 0, 255, 127.5],
-    getRadius: 16,
+    getRadius: (d) => (d.properties.id === selectedObjectId ? 1500 : 600),
     getElevation: (d) => d.properties.elevation,
-    pointRadiusMinPixels: 16,
   });
 
   return (

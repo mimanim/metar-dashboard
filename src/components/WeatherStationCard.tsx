@@ -65,7 +65,7 @@ const WeatherStationCard: React.FC<InterfaceDataListProps> = ({
         </StyledWeatherStationTitle>
         <StyledCardLine>
           <StyledDataElement>{`Lat: ${latitude.toFixed(5)}`}</StyledDataElement>
-          <StyledDataElement>{`Lon: ${longitude.toFixed(
+          <StyledDataElement>{`, Lon: ${longitude.toFixed(
             5
           )}`}</StyledDataElement>
         </StyledCardLine>
