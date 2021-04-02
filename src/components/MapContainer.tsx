@@ -42,7 +42,7 @@ const MapContainer: React.FC = () => {
         : selectedObjectId === d.properties.id
         ? [255, 0, 0, 127.5]
         : [0, 0, 255, 127.5],
-    getRadius: 32,
+    getRadius: 16,
     getElevation: (d) => d.properties.elevation,
     pointRadiusMinPixels: 16,
   });
@@ -51,20 +51,20 @@ const MapContainer: React.FC = () => {
     <DeckGLController
       initialViewState={INITIAL_VIEW_STATE}
       controller
-      getTooltip={ ({object}) => {
+      getTooltip={({ object }) => {
         console.log(object);
-        return object && {
-        // @ts-ignore: Unreachable code error
-        html: `<span>${object.properties.name}</span><div>Elevation: ${object.properties.elevation} meters</div>`,
-        style: {
-          backgroundColor: '#454543',
-          fontSize: '0.8em',
-          color: 'white',
-          borderRadius: '4px'
-        }
-      }
-
-       
+        return (
+          object && {
+            // @ts-ignore: Unreachable code error
+            html: `<span>${object.properties.name}</span><div>Elevation: ${object.properties.elevation} meters</div>`,
+            style: {
+              backgroundColor: "#454543",
+              fontSize: "0.8em",
+              color: "white",
+              borderRadius: "4px",
+            },
+          }
+        );
 
         // if (!d.object || !(d.object as any).properties) return null;
 

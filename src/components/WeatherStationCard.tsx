@@ -16,6 +16,7 @@ const StyledWeatherStationCardContents = styled.div<{ hovered: boolean }>`
   flex-direction: column;
   background-color: ${({ hovered }) => (hovered ? "green" : "#5e5e5c")};
   border-radius: 4px;
+  cursor: pointer;
 `;
 
 const StyledCardLine = styled.div`
